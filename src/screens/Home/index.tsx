@@ -1,4 +1,4 @@
-import {StyleSheet, View, KeyboardAvoidingView, Platform} from 'react-native';
+import {StyleSheet, View, KeyboardAvoidingView} from 'react-native';
 import React from 'react';
 import SearchInput from './SearchInput';
 import {Button} from '../../components';
