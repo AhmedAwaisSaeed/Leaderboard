@@ -1,7 +1,7 @@
 export default {
   Primary: {
-    REGULAR: '#7557CD',
-    REGULARTWO: '#B16BFC',
+    REGULAR: '#A8C74C',
+    REGULARTWO: '#EAF1D4',
     REGULARTHREE: '#5A3DB4',
 
     TRANSPARENT: 'rgba(255, 255, 255, 0)',
