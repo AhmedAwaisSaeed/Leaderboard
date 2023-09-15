@@ -1,7 +1,7 @@
 import React from 'react';
 import RootNavigation from './src/navigation/RootNavigation';
 
-const App = () => {
+const App = (): JSX.Element => {
   return <RootNavigation />;
 };
 export default App;
