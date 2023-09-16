@@ -2,11 +2,21 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {CustomTextInput, Icon} from '../../components';
 import {Colors, Layout, Images} from '../../theme';
-const SearchInput = (): JSX.Element => {
+const SearchInput = ({
+  searchedUser,
+  setSearchedUser,
+}: {
+  searchedUser: string;
+  setSearchedUser: (text: string) => void;
+}): JSX.Element => {
   return (
     <View style={styles.container}>
       <Icon source={Images.searchIcon} color={Colors.Primary.REGULAR} />
-      <CustomTextInput placeholder="User name.." />
+      <CustomTextInput
+        placeholder="User name.."
+        onChangeText={setSearchedUser}
+        value={searchedUser}
+      />
     </View>
   );
 };
