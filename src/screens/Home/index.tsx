@@ -1,19 +1,26 @@
 import {StyleSheet, View, KeyboardAvoidingView} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import SearchInput from './SearchInput';
 import {Button} from '../../components';
 import {Layout} from '../../theme';
 import {IS_ANDROID} from '../../utils';
+import UserTable from './UserTable';
 const Home = (): JSX.Element => {
+  const [searchedUser, setSearchedUser] = useState('');
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
-        style={styles.container}
+        style={styles.keyboardAvoidContainer}
         behavior={IS_ANDROID ? undefined : 'padding'}>
         <View style={styles.rowContainer}>
-          <SearchInput />
+          <SearchInput
+            searchedUser={searchedUser}
+            setSearchedUser={setSearchedUser}
+          />
           <Button text={'Search'} />
         </View>
+        <UserTable />
       </KeyboardAvoidingView>
     </View>
   );
@@ -25,12 +32,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
+  },
+  keyboardAvoidContainer: {
+    flex: 1,
+    // justifyContent: 'center',
+    // backgroundColor: 'red',
   },
   rowContainer: {
+    flex: 1,
+    // height: Layout.SV_105,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     marginHorizontal: Layout.SV_10,
   },
 });
