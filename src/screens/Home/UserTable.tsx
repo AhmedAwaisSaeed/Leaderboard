@@ -1,19 +1,44 @@
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
 import UserInfo from './UserInfo';
 import {userType} from '../../types';
 import {TableHeader} from '../../components';
+import {Colors, Layout} from '../../theme';
 const UserTable = (): JSX.Element => {
   const users = useSelector((state: RootState) => state.user.users);
-  const TopUsers = Object.values(users)
-    .sort((a, b) => b.bananas - a.bananas)
-    .slice(0, 10);
-  console.log('all users data from store==', users);
+  const selectedUser = useSelector(
+    (state: RootState) => state.user.selectedUser,
+  );
+  const rankedUsers = Object.values(users).sort(
+    (a, b) => b.bananas - a.bananas,
+  );
+
+  const TopUsers = rankedUsers.slice(0, 10);
+  if (selectedUser) {
+    const userIndex = rankedUsers.findIndex(
+      user => user.uid === selectedUser.uid,
+    );
+    if (userIndex >= 10) {
+      TopUsers.pop();
+      TopUsers.push({...selectedUser, userIndex: userIndex});
+    }
+  }
+
+  console.log('selected user now in user tabel', selectedUser);
 
   const _renderItem = ({item, index}: {item: userType; index: number}) => {
-    return <UserInfo key={index} user={item} />;
+    const isSearchedUser = selectedUser?.uid === item.uid ? true : false;
+    console.log('isearched user===', isSearchedUser);
+    return (
+      <UserInfo
+        key={index}
+        user={item}
+        index={index}
+        isSearchedUser={isSearchedUser}
+      />
+    );
   };
 
   return (
@@ -29,6 +54,6 @@ export default UserTable;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'orange',
+    backgroundColor: Colors.Primary.WHITE,
   },
 });

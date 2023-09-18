@@ -6,13 +6,15 @@ export interface userType {
   stars: number;
   subscribed: boolean;
   uid: string;
+  userIndex?: number;
 }
 
-// export interface record {
-//   [id: string]: userType;
-// }
+export interface record {
+  [id: string]: userType;
+}
 
 export interface UserState {
-  users: userType[];
-  error: null;
+  users: record;
+  selectedUser?: userType;
+  error: null | string;
 }
