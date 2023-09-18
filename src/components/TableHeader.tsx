@@ -25,14 +25,15 @@ export default TableHeader;
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
-    backgroundColor: Colors.Primary.REGULAR,
+    // backgroundColor: Colors.Primary.REGULAR,
     marginTop: Layout.SV_10,
   },
   columContainer: {
     flex: 1,
     justifyContent: 'center',
-    margin: Layout.SV_1,
+    margin: Layout.SV_5,
     borderWidth: 1,
+    backgroundColor: Colors.Primary.REGULAR,
     // backgroundColor: 'red',
   },
   headerTextStyle: {

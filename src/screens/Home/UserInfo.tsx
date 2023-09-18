@@ -2,17 +2,38 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {userType} from '../../types';
 import {Layout, Colors, Fonts} from '../../theme';
-const UserInfo = ({user}: {user: userType}) => {
-  const {name, lastDayPlayed, bananas, stars} = user;
-  console.log('current user==', user);
+const UserInfo = ({
+  user,
+  index,
+  isSearchedUser,
+}: {
+  user: userType;
+  index: number;
+  isSearchedUser: boolean;
+}) => {
+  const {name, bananas} = user;
+
+  const rank =
+    user.userIndex && user.userIndex >= 10 ? user.userIndex + 1 : index + 1;
+  const nameTextcolor = isSearchedUser
+    ? Colors.Primary.RED
+    : Colors.Primary.BLACK;
   return (
     <View style={styles.row}>
       <View style={styles.columContainer}>
-        <Text style={styles.columnTextStyle}>{name}</Text>
+        <Text
+          style={[
+            styles.columnTextStyle,
+            {
+              color: nameTextcolor,
+            },
+          ]}>
+          {name}
+        </Text>
       </View>
 
       <View style={styles.columContainer}>
-        <Text style={styles.columnTextStyle}>{lastDayPlayed}</Text>
+        <Text style={styles.columnTextStyle}>{rank}</Text>
       </View>
 
       <View style={styles.columContainer}>
@@ -20,7 +41,7 @@ const UserInfo = ({user}: {user: userType}) => {
       </View>
 
       <View style={styles.columContainer}>
-        <Text style={styles.columnTextStyle}>{stars}</Text>
+        <Text style={styles.columnTextStyle}>{`${isSearchedUser}`}</Text>
       </View>
     </View>
   );
@@ -31,13 +52,13 @@ export default UserInfo;
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    backgroundColor: Colors.Primary.REGULAR,
-    marginTop: Layout.SV_10,
+    backgroundColor: Colors.Primary.WHITE,
+    marginVertical: Layout.SV_10,
   },
   columContainer: {
     flex: 1,
     justifyContent: 'center',
-    margin: Layout.SV_1,
+    margin: Layout.SV_5,
     borderWidth: 1,
     // backgroundColor: 'red',
   },
