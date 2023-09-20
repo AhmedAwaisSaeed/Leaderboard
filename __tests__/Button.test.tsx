@@ -3,12 +3,15 @@ import React from 'react';
 import {render} from '@testing-library/react-native';
 import {Provider} from 'react-redux';
 import store from '../src/store';
-import App from '../App';
+import Home from '../src/screens/Home';
 
-test('renders App correctly', async () => {
-  render(
+test('button render correctly', async () => {
+  const {getByText} = render(
     <Provider store={store}>
-      <App />
+      <Home />
     </Provider>,
   );
+
+  const button = getByText('Search');
+  expect(button).toBeDefined();
 });

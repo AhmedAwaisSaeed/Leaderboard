@@ -5,17 +5,16 @@ import {RootState} from '../../store';
 import UserInfo from './UserInfo';
 import {userType} from '../../types';
 import {TableHeader} from '../../components';
-import {Colors, Layout} from '../../theme';
+import {Colors} from '../../theme';
+import {convertObjectToSortedArray, TopTenUsers} from '../../utils';
 const UserTable = (): JSX.Element => {
   const users = useSelector((state: RootState) => state.user.users);
   const selectedUser = useSelector(
     (state: RootState) => state.user.selectedUser,
   );
-  const rankedUsers = Object.values(users).sort(
-    (a, b) => b.bananas - a.bananas,
-  );
+  const rankedUsers = convertObjectToSortedArray(users);
 
-  const TopUsers = rankedUsers.slice(0, 10);
+  const TopUsers = TopTenUsers(rankedUsers);
   if (selectedUser) {
     const userIndex = rankedUsers.findIndex(
       user => user.uid === selectedUser.uid,
@@ -26,11 +25,8 @@ const UserTable = (): JSX.Element => {
     }
   }
 
-  console.log('selected user now in user tabel', selectedUser);
-
   const _renderItem = ({item, index}: {item: userType; index: number}) => {
     const isSearchedUser = selectedUser?.uid === item.uid ? true : false;
-    console.log('isearched user===', isSearchedUser);
     return (
       <UserInfo
         key={index}

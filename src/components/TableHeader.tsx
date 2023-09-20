@@ -25,7 +25,6 @@ export default TableHeader;
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
-    // backgroundColor: Colors.Primary.REGULAR,
     marginTop: Layout.SV_10,
   },
   columContainer: {
@@ -34,7 +33,6 @@ const styles = StyleSheet.create({
     margin: Layout.SV_5,
     borderWidth: 1,
     backgroundColor: Colors.Primary.REGULAR,
-    // backgroundColor: 'red',
   },
   headerTextStyle: {
     fontFamily: Fonts.medium,

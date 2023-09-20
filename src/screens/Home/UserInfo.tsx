@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: Layout.SV_5,
     borderWidth: 1,
-    // backgroundColor: 'red',
   },
   columnTextStyle: {
     fontFamily: Fonts.medium,
