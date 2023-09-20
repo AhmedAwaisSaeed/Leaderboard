@@ -84,8 +84,5 @@ export default {
     ORANGE_1: '#E0B26D',
   },
 
-  Common: {
-    LINKEDIN: '#3076AB',
-    FLYDESK_BLUE: '#698CB6',
-  },
+  Common: {},
 };

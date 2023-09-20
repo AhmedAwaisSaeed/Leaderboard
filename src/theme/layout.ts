@@ -1,7 +1,6 @@
 import {scale} from 'react-native-size-matters';
 
 export default {
-  // Scaled values for margins/paddings/sizes
   SV_1: scale(1),
   SV_2: scale(2),
   SV_2_5: scale(2.5),
